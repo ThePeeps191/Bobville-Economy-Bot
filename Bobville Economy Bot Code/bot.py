@@ -9,7 +9,6 @@ import os
 import json
 import random
 import math
-from keep_alive import keep_alive
 from itertools import cycle
 from trivia import Trivia
 import trivia
@@ -174,6 +173,6 @@ async def help(ctx):
 
 
 
-keep_alive()
+
 BOT_TOKEN = os.getenv("TOKEN") 
 client.run(BOT_TOKEN)
