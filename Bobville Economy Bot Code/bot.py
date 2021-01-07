@@ -9,6 +9,7 @@ import os
 import json
 import random
 import math
+from keep_alive import keep_alive
 from itertools import cycle
 from trivia import Trivia
 import trivia
@@ -114,9 +115,9 @@ async def work_error(ctx, error):
 @commands.cooldown(1, 20, commands.BucketType.user)
 async def beg(ctx):
 	g = random.randint(2, 30)
-	em = discord.Embed(title="Beg", description=f"Here Are **{g}** Bobcoins:coin:!", color=ctx.author.color)
 	bank[str(ctx.author.id)] += g
 	save_bank()
+	em = discord.Embed(title="Beg", description=f"Here Are **{g}** Bobcoins:coin:!\nCurrent Balance: **{bank[str(ctx.author.id)]} Bobcoins:coin:**", color=ctx.author.color)
 	await ctx.send(embed=em)
 # Beg Cooldown
 @beg.error
@@ -173,6 +174,6 @@ async def help(ctx):
 
 
 
-
+keep_alive()
 BOT_TOKEN = os.getenv("TOKEN") 
 client.run(BOT_TOKEN)
