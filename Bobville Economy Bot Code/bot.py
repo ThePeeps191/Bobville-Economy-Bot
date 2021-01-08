@@ -11,6 +11,8 @@ import random
 import math
 from keep_alive import keep_alive
 from itertools import cycle
+
+# Import My Custom Modules
 from trivia import Trivia
 import trivia
 
@@ -126,6 +128,11 @@ async def beg_error(ctx, error):
 		em = discord.Embed(title="Command Is On Cooldown", description=f"Oops! Looks Like You Have Already Begged. Please Wait **{round(error.retry_after, 1)}** Seconds Before Using `?beg` Again.", color=ctx.author.color)
 		await ctx.send(embed=em)
 
+# Bot-Info Command
+@client.command(aliases=["bot-info"])
+async def bot_info(ctx):
+	em = discord.Embed(title="Info", description="**I Was Made By The_Peeps191#5993, And I Am A Game Bot.**\n*Links:*\n- [GitHub](https://github.com/ThePeeps191)\n- [Repl.it](https://repl.it/@ThePeeps191)\n- [YouTube](https://www.youtube.com/channel/UCjsJxOviseq9xQNrVUIDC1A)\n- [My Source Code](https://github.com/ThePeeps191/Bobville-Economy-Bot)", color=ctx.author.color)
+	await ctx.send(embed=em)
 
 # Help Command
 @client.group(invoke_without_command=True)
@@ -137,8 +144,15 @@ async def help(ctx):
 # Non-Gameplay Help Commands
 @help.command(aliases=["non-gameplay"])
 async def non_gameplay(ctx):
-	await ctx.send("Command Still Under Development")
+	em = discord.Embed(title="Non-Gameplay Commands", description="The Commands that Are Not For The Gamelay Itself. Use `?help <command>` For Information On A Command", color=ctx.author.color)
+	em.add_field(name="Commands", value="`bot-info`")
+	await ctx.send(embed=em)
 
+@help.command(aliases=["bot-info"])
+async def bot_info(ctx):
+	em = discord.Embed(title="Bot-Info Command", description="Shows You Information On The Bot", color=ctx.author.color)
+	em.add_field(name="INFO", value="**Description**:\nShows You Information On The Bot.\n\n**Syntax/Usage**:\n`?profile bot-info`\n\n**Cooldown**:\nNone\n\n**Aliases**:\nNone")
+	await ctx.send(embed=em)
 
 # Gameplay Help Commands
 @help.command()
