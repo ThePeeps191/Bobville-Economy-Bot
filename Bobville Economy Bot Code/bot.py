@@ -15,6 +15,7 @@ from itertools import cycle
 from trivia import Trivia
 import trivia
 
+
 # Make The Bot Object
 client = commands.Bot(command_prefix="?")
 # Remove The Default Help Command
